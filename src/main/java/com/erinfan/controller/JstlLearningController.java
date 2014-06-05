@@ -1,15 +1,17 @@
 package com.erinfan.controller;
 
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+@Controller
+@RequestMapping("/jstlTest")
+public class JstlLearningController{
 
-public class JstlLearningController extends AbstractController{
-    @Override
-    protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        ModelAndView modelAndView = new ModelAndView("jstlTestPage");
-        return modelAndView;
+    @RequestMapping(method = RequestMethod.GET)
+    protected String showTestingResult(ModelMap model) {
+        model.addAttribute("msg", "I am testing message!");
+        return "jstlTestPage";
     }
 }
