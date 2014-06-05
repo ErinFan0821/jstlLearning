@@ -1,16 +1,15 @@
 package com.erinfan.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.AbstractController;
 
-@Controller
-@RequestMapping("/welcome")
-public class JstlLearningController{
-    @RequestMapping(method = RequestMethod.GET)
-    public String showResult(ModelMap model){
-        model.addAttribute("msg", "Fuck!");
-        return "jstlTestPage";
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class JstlLearningController extends AbstractController{
+    @Override
+    protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        ModelAndView modelAndView = new ModelAndView("jstlTestPage");
+        return modelAndView;
     }
 }
