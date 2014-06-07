@@ -75,5 +75,30 @@
     </c:otherwise>
 </c:choose>
 
+<br>
+<br>
+<br>
+
+<c:out value="c:forEach"/>
+<c:forEach var="account" items="${accountList}">
+    <c:out value="${account}"/>
+</c:forEach>
+<br><br>
+<c:out value="Use begin and end to do foreach"/><br>
+<c:forEach var="account" items="${accountList}" begin="1" end="2" step="1">
+    <c:out value="${account}"/>
+</c:forEach>
+<br>
+<br>
+<c:out value="Out put this foreach's info: "/><br>
+<c:forEach var="account" items="${accountList}" begin="0" end="3" step="2" varStatus="attribute">
+    <br>
+    <c:out value="${account}"/> four attributes: <br>
+    current index: <c:out value="${attribute.index}"/><br>
+    total foreach times: <c:out value="${attribute.count}"/><br>
+    Is the first index: <c:out value="${attribute.first}"/><br>
+    Is the last index: <c:out value="${attribute.last}"/><br>
+
+</c:forEach>
 </body>
 </html>
