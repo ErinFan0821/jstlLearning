@@ -79,7 +79,7 @@
 <br>
 <br>
 
-<c:out value="c:forEach"/>
+<c:out value="c:forEach Demo"/>
 <c:forEach var="account" items="${accountList}">
     <c:out value="${account}"/>
 </c:forEach>
@@ -93,12 +93,31 @@
 <c:out value="Out put this foreach's info: "/><br>
 <c:forEach var="account" items="${accountList}" begin="0" end="3" step="2" varStatus="attribute">
     <br>
-    <c:out value="${account}"/> four attributes: <br>
-    current index: <c:out value="${attribute.index}"/><br>
-    total foreach times: <c:out value="${attribute.count}"/><br>
+    Current value: <c:out value="${account}"/><br>
+    Current Index: <c:out value="${attribute.index}"/><br>
+    Foreach times: <c:out value="${attribute.count}"/><br>
     Is the first index: <c:out value="${attribute.first}"/><br>
     Is the last index: <c:out value="${attribute.last}"/><br>
 
 </c:forEach>
+
+<br>
+<br>
+<br>
+
+<c:out value="c:forToken Demo"/><br>
+<c:forTokens items="1,2,3,4" delims="," var="result">
+    <c:out value="${result}"/>
+</c:forTokens>
+<br>
+<c:forTokens items="A#B#C#D#E#F#G" delims="#" var="result" varStatus="attribute">
+    <br>
+    Current Token: <c:out value="${result}"/><br>
+    Current Index: <c:out value="${attribute.index}"/><br>
+    Foreach Times: <c:out value="${attribute.count}"/><br>
+    Is the first index: <c:out value="${attribute.first}"/><br>
+    Is the last index: <c:out value="${attribute.last}"/><br>
+</c:forTokens>
+
 </body>
 </html>
