@@ -1,4 +1,4 @@
-<%@page language="java" import="java.util.*" pageEncoding="gb2312" %>
+<%@page language="java" pageEncoding="gb2312" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
@@ -119,5 +119,34 @@
     Is the last index: <c:out value="${attribute.last}"/><br>
 </c:forTokens>
 
+<br>
+<br>
+<br>
+
+<c:out value="Demo for open URL"/><br>
+
+<c:out value="c:import demo"/><br>
+<%--<c:import url="http://www.baidu.com"/>--%>
+<c:catch var="error">
+    First import: <c:import url="test.txt"/>
+</c:catch>
+<br>
+<c:out value="${error}"/><br>
+<c:catch var="error">
+    <c:import url="test.txt" var="myurl" scope="session" charEncoding="gbk"/><br>
+    Second import: <c:out value="${myurl}"/>
+</c:catch>
+
+<%--<br>--%>
+<%--<c:out value="c:redirect demo"/><br>--%>
+<%--<c:redirect url="http://localhost:8080">--%>
+    <%--<c:param name="username" value="fakeUser"/>--%>
+    <%--<c:param name="password" value="fakePsd"/>--%>
+<%--</c:redirect>--%>
+
+<br>
+<c:out value="c:url demo"/><br>
+<c:url value="http://localhost:8080/jstlLearning" var="url" scope="session"/>
+<a href="${url}">Open Url</a>
 </body>
 </html>
