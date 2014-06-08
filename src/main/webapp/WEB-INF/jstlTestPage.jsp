@@ -1,6 +1,6 @@
 <%@page language="java" pageEncoding="gb2312" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <body>
 <h1>JSTL Hello Example</h1>
@@ -9,6 +9,7 @@
 <c:out value="c:out demo"/><br>
 <c:out value="I am a nomal string" default="defaultValue"></c:out><br>
 <c:out value="I am a string with special char: &lt&lt&lt&lt" escapeXml="true"></c:out><br>
+<c:out value="I am a string with special char: &lt&lt&lt&lt"></c:out><br>
 <c:out value="I am a string with special char: &lt&lt&lt&lt" escapeXml="false"></c:out><br>
 <c:out value="${null}">default string</c:out>
 
@@ -20,8 +21,6 @@
 <c:set value="ErinFan" var="myName" scope="session"/>
 <c:set var="name2" scope="session">Reg</c:set>
 <c:set var="name2" scope="request">Reg</c:set>
-
-
 <li>get name from session: ${sessionScope.myName}</li>
 <li>get second name from the session: ${sessionScope.name2}</li>
 
@@ -79,7 +78,7 @@
 <br>
 <br>
 
-<c:out value="c:forEach Demo"/>
+<c:out value="c:forEach Demo"/><br>
 <c:forEach var="account" items="${accountList}">
     <c:out value="${account}"/>
 </c:forEach>
@@ -98,7 +97,6 @@
     Foreach times: <c:out value="${attribute.count}"/><br>
     Is the first index: <c:out value="${attribute.first}"/><br>
     Is the last index: <c:out value="${attribute.last}"/><br>
-
 </c:forEach>
 
 <br>
@@ -110,7 +108,7 @@
     <c:out value="${result}"/>
 </c:forTokens>
 <br>
-<c:forTokens items="A#B#C#D#E#F#G" delims="#" var="result" varStatus="attribute">
+<c:forTokens items="A#B#C" delims="#" var="result" varStatus="attribute">
     <br>
     Current Token: <c:out value="${result}"/><br>
     Current Index: <c:out value="${attribute.index}"/><br>
@@ -125,19 +123,22 @@
 
 <c:out value="Demo for open URL"/><br>
 
-<c:out value="c:import demo"/><br>
+<%--<c:out value="c:import demo"/><br>--%>
+<%--<c:catch var="error">--%>
 <%--<c:import url="http://www.baidu.com"/>--%>
+<%--</c:catch>--%>
+<%--<c:out value="${error}"/><br>--%>
+
 <c:catch var="error">
     First import: <c:import url="test.txt"/>
 </c:catch>
-<br>
 <c:out value="${error}"/><br>
 <c:catch var="error">
     <c:import url="test.txt" var="myurl" scope="session" charEncoding="gbk"/><br>
     Second import: <c:out value="${myurl}"/>
 </c:catch>
 
-<%--<br>--%>
+<br>
 <%--<c:out value="c:redirect demo"/><br>--%>
 <%--<c:redirect url="http://localhost:8080">--%>
     <%--<c:param name="username" value="fakeUser"/>--%>
@@ -145,8 +146,19 @@
 <%--</c:redirect>--%>
 
 <br>
+<br>
 <c:out value="c:url demo"/><br>
 <c:url value="http://localhost:8080/jstlLearning" var="url" scope="session"/>
-<a href="${url}">Open Url</a>
+<a href="${url}">Open Url</a><br>
+
+<br>
+<br>
+
+<jsp:useBean id="date" class="java.util.Date"/>
+<fmt:formatDate value="${date}" pattern="yyyy-MM-dd HH:mm:ss"/><br><br>
+<fmt:formatNumber value="145.65464546" pattern="0.00"/><br>
+<fmt:formatNumber type="number" value="4534353.45353"/><br>
+<fmt:formatNumber type="percent" value="0.6789"/><br>
+<fmt:formatNumber type="currency" value="12" pattern="$.00" /><br>
 </body>
 </html>
